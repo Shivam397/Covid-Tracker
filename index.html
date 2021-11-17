@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Covid Tracker</title>
+</head>
+<body>
+   
+    <div class="container1">
+       
+        <div class="logobox">
+            <div id="square"></div>
+            <div class = "head">
+                <h1>COVID TRACKER</h1>
+                <h1 id='live'>🔴LIVE </h1>
+            </div>
+        </div>
+ 
+ 
+        <div class="contenthead">
+        <div class="info">
+            <p>Coronavirus disease (COVID-19) is an infectious disease caused by
+            the SARS-CoV-2 virus. Most people infected with the virus will experience
+            mild to moderate respiratory illness and recover without requiring special
+            treatment. However, some will become seriously ill and require medical
+             attention.</p>
+        </div>
+        <div class="coronaimg">
+        <img src="images/headerbar.png" alter="A SARS-COV-VIRUS" width="100%" height="100%">
+        </div>
+        </div>
+    </div>
+ 
+ 
+    <section class="container">
+ 
+        <label for="" class="labelField">Enter Country Name:</label>
+        <input type="text" class="inputType" id="inputval" placeholder="Enter Country Name">
+        <button type="submit" id="btn" onclick="covidData()">Submit</button>
+        <button type="reset" id="btn-primary" onclick="resetAll()">Reset</button>
+        <div class="container2">
+            <div class="one" id="cont1">
+            </div>
+   
+            <div class="two" id="cont2">
+            </div>
+   
+            <div class="three" id="cont3">
+            </div>
+   
+            <div class="four" id="cont4">
+            </div>
+   
+            <div class="five" id="cont5">
+            </div>
+   
+            <div class="six" id="cont6">
+            </div>
+ 
+            <div class="seven" id="cont7">
+            </div>
+ 
+            <div class="eight" id="cont8">
+            </div>
+        </div>
+       
+    </section>
+    <footer class="footer">
+        <div class="foot">
+            Designed By Shivam and Vedshree Bhawsar
+        </div>
+</footer>
+ 
+ 
+    <script>
+        console.log("live covid tracker");
+        var value = document.getElementById('inputval').value;
+        let cont1 = document.getElementById('cont1');
+        let cont2 = document.getElementById('cont2');
+        let cont3 = document.getElementById('cont3');
+        let cont4 = document.getElementById('cont4');
+        let cont5 = document.getElementById('cont5');
+        let cont6 = document.getElementById('cont6');
+        let cont7 = document.getElementById('cont7');
+        let cont8 = document.getElementById('cont8');
+        let updatedTime = document.getElementById('updatedTime');
+        
+        const covidData = (i) => {
+        let value = document.getElementById('inputval').value;
+        const apiData = fetch(`https://corona.lmao.ninja/v2/countries/${value}`);
+            apiData.then((data) => {
+                return data.json();
+            }).then((actualData) => {
+                let datan = actualData.cases;
+                console.log(datan);
+                cont1.innerHTML += `Total Confirmed : ${actualData.cases}`;
+                cont2.innerHTML += `New Confirmed : ${actualData.todayCases}`;
+                cont3.innerHTML += `TotalDeaths : ${actualData.deaths}`;
+                cont4.innerHTML += `NewDeaths : ${actualData.todayDeaths}`;
+                cont5.innerHTML += `TotalRecovered : ${actualData.recovered}`;
+                cont6.innerHTML += `NewRecovered : ${actualData.todayRecovered}`;
+                cont7.innerHTML += `Active cases : ${actualData.active}`;
+                cont8.innerHTML += `Tests conducted : ${actualData.tests}`;
+            })
+        }
+        
+        const resetAll = () => {
+            cont1.innerHTML = "";
+            cont2.innerHTML = "";
+            cont3.innerHTML = "";
+            cont4.innerHTML = "";
+            cont5.innerHTML = "";
+            cont6.innerHTML = "";
+            cont7.innerHTML = "";
+            cont8.innerHTML = "";
+        }
+
+    </script>
+ 
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+ 
